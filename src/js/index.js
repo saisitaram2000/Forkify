@@ -1,0 +1,38 @@
+// Global app controller
+import Search from './models/Search';
+import * as searchView from './views/searchView';
+import {elements} from './views/base';
+/**Global state of the app
+ * -search object
+ * -recipe object
+ * -shopping list object
+ * -likes object
+ */
+const state={};
+const controlSearch= async () =>{
+    //1.get query from view
+    const query=searchView.getInput();//TODO
+    console.log(query);
+    if(query){
+        //2.new Search object and it to state
+        state.search=new Search(query);
+
+        //3.prepare UI for results
+
+        //4.search for recipes
+        await state.search.getResults();
+
+        //5.render results from UI
+        console.log(state.search.result);
+    }
+}
+elements.searchForm.addEventListener('submit',e=>{
+    e.preventDefault();
+    controlSearch();
+});
+
+
+
+
+//const res = await axios(`https://forkify-api.herokuapp.com/api/search?&q=${this.query}`);
+//const res = await axios(`https://forkify-api.herokuapp.com/api/get?rId=${this.id}`);
