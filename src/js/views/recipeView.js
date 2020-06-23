@@ -80,7 +80,7 @@ export const renderRecipe = recipe =>{
     <div class="recipe__ingredients">
         <ul class="recipe__ingredient-list">
         ${recipe.ingredients.map(el=>createIngredient(el)).join('')}
-        <button class="btn-small recipe__btn">
+        <button class="btn-small recipe__btn recipe__btn recipe__btn--add">
             <svg class="search__icon">
                 <use href="img/icons.svg#icon-shopping-cart"></use>
             </svg>
@@ -94,7 +94,7 @@ export const renderRecipe = recipe =>{
             This recipe was carefully designed and tested by
             <span class="recipe__by">${recipe.author}</span>. Please check out directions at their website.
         </p>
-        <a class="btn-small recipe__btn" href="${recipe.url}" target="_blank">
+        <a class="btn-small" href="${recipe.url}" target="_blank">
             <span>Directions</span>
             <svg class="search__icon">
                 <use href="img/icons.svg#icon-triangle-right"></use>
@@ -115,7 +115,7 @@ export const updateServingsIngredients = recipe =>{
     //update ingredients
     const countElements=Array.from(document.querySelectorAll('.recipe__count'));
     countElements.forEach((el,i)=>{
-        console.log(el);
+       // console.log(el);
         el.textContent=formatCount(recipe.ingredients[i].count);
     })
 }
