@@ -490,3 +490,10 @@ body {
   .shopping__item:hover .shopping__delete {
     opacity: 1;
     visibility: visible; }
+    .shopping__descriptionClear{
+      flex: 1;
+      font-size: 3rem;
+      margin-top: .1rem;
+    margin-right: 1.5rem;
+    color: #F59A83;
+    }

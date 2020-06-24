@@ -82,7 +82,7 @@ const controlRecipe= async()=>{
          //console.log(state.recipe.ingredients);
          //parsing ingredients
          state.recipe.parseIngredients();
-         
+
         //calculate servings and time
         state.recipe.calcTime();
         state.recipe.calcServings();
@@ -147,8 +147,9 @@ const controlLikes=() =>{
     likesView.toggleLikeBtn(true);
 
     //Add like to UI list
-      console.log(state.likes);
+     // console.log(state.likes);
     likesView.renderLike(newLike);
+
     //user has liked current recipe
     }else{
         //delete like from state
@@ -158,7 +159,7 @@ const controlLikes=() =>{
         likesView.toggleLikeBtn(false);
 
         //delete like from UI list
-        console.log(state.likes);
+        //console.log(state.likes);
         likesView.deleteLike(currID);
     }
     
@@ -203,6 +204,8 @@ elements.recipe.addEventListener('click', e => {
    // console.log(state.recipe);
  
 });
-//for testing purpose
+/*
+//for testing purpose//
 window.l=new List();
 window.L=new Likes();
+*/
