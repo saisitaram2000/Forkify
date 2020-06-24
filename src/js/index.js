@@ -78,8 +78,11 @@ const controlRecipe= async()=>{
         try{
         //Get recipe data & parseIngredients
         await state.recipe.getRecipe();
-      //  console.log(state.recipe.ingredients);
+
+         //console.log(state.recipe.ingredients);
+         //parsing ingredients
          state.recipe.parseIngredients();
+         
         //calculate servings and time
         state.recipe.calcTime();
         state.recipe.calcServings();
@@ -132,7 +135,9 @@ elements.shopping.addEventListener('click',e=>{
 const controlLikes=() =>{
     //1.create new Like object if not any
     if(!state.likes) state.likes=new Likes();
+
     const currID=state.recipe.id
+
     //user has not yet liked current recipe
     if(!state.likes.isLiked(state.recipe.id)){
     //Add like to state
@@ -161,8 +166,21 @@ const controlLikes=() =>{
 
 }
 
-state.likes=new Likes();
-likesView.toggleLikeMenu(state.likes.getNumLikes());
+//Restore liked recipes on page Load
+window.addEventListener('load',() =>{
+    //create new like object
+    state.likes=new Likes();
+
+    //read likes from localstorage
+    state.likes.readStorage();
+
+    //toggle like menu
+    likesView.toggleLikeMenu(state.likes.getNumLikes());
+
+    //render likes to UI
+    state.likes.likes.forEach(like => likesView.renderLike(like));
+})
+
 // Handling recipe button clicks
 elements.recipe.addEventListener('click', e => {
     if (e.target.matches('.btn-decrease, .btn-decrease *')) {
@@ -187,7 +205,4 @@ elements.recipe.addEventListener('click', e => {
 });
 //for testing purpose
 window.l=new List();
-
-
-//const res = await axios(`https://forkify-api.herokuapp.com/api/search?&q=${this.query}`);
-//const res = await axios(`https://forkify-api.herokuapp.com/api/get?rId=${this.id}`);
+window.L=new Likes();
